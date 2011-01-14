@@ -1,0 +1,129 @@
+v0.7.5 (8th September 2009)
+- Don't raise an exception on malformed dates when reading files
+
+v0.7.4 (2nd September 2009)
+- Expand ONIX::Normaliser
+  - strip control chars
+  - add encoding declaration to valid utf-8 files that aren't declared
+    as such
+
+v0.7.3 (19th August 2009)
+- Switch from java to xsltproc to convert short tag ONIX files
+  to reference tags
+
+v0.7.2 (19th August 2009)
+- Added ONIX::Normaliser class
+  - for normalising various ONIX files into a form that makes them easy
+    to process. Shouldn't be necesary to pre-process files like this, but
+    I'm sick of trying to wrestle the libxml ruby bindings
+
+v0.7.1 (24th June 2009)
+- Small tweak to ordering of elements in the Product group
+
+v0.7.0 (17th June 2009)
+- try using LibXML for reader again
+  - retrieving the ONIX version of the input file is currently disabled, as 
+    that seems to be the source of our instability
+- Various Ruby 1.9 compatability tweaks
+  - add source file coding declarations. All source files are UTF-8
+  - ONIX::Reader ensures all input data is converted to UTF-8
+  - the ROXML based objects seem to forget the encoding when they're marshalled,
+    so force string based attributes *back* to UTF-8
+
+v0.6.7 (Unreleased)
+- add some accessors to the Title composite
+
+v0.6.6 (Unreleased)
+- Forget the S on an element name
+
+v0.6.5 (Unreleased)
+- Ruby 1.9 compat
+
+v0.6.4 (Unreleased)
+- Add APAProduct#price
+
+v0.6.3(Unreleased)
+- Bump ROXML dependency to 2.5.3 to get libxml-ruby 1.1.3 compatibility
+
+v0.6.2 (Unreleased)
+- Fix a small typo in APAProduct
+
+v0.6.1 (Unreleased)
+- Stopped using LibXMLs Reader class as the basis for our reader.
+  - We were getting too many segfaults (even 1 is too many!)
+  - until we resolve it, reverted to manual string parsing
+  - This is a fairly major regression of functionality. For 99% of files
+    it won't matter, but for some corner cases it will. ie UTF-16 encoded
+    files
+  - Will also be noticeably slower
+  - Hopefully only a short term fix, until I work out what is going on with
+    libxml
+
+v0.6.0 (18th March 2009)
+- remove use of threads in ONIX::Reader
+  - a producer/consumer pattern was useful in the REXML stream parsing days, but
+    now LibXML's Reader binding provides a better alternative
+  - API left unchanged, this was all under the hood
+- bump required ROXML version to 2.5.2
+
+v0.5.1 (4th March 2009)
+- Fix a single letter typo
+
+v0.5 (2nd March 2009)
+- Switch ROXML dependency from a patched version to vanilla
+  - Vanilla ROXML now has all the features we need
+  - This change should be transparent to ONIX gem users
+
+v0.4.7 (9th December 2008)
+- Contributor sub elements should match the order specified in the DTD
+
+v0.4.6 (2nd December 2008)
+- 2 new accessors on the contributor class - bio and corporate name
+
+v0.4.5 (21st November 2008)
+- APAProduct wrapper should generate valid MediaFile composites
+
+v0.4.4 (19th November 2008)
+- Added support for more elements from MarketRepresentation
+
+v0.4.3 (11th November 2008)
+- Added support for AgentName and MarketPublishingStatus
+
+v0.4.2 (1st November 2008)
+- Remove final remnants of REXML code
+- Minor reordering of elements to match DTD
+
+v0.4.1 (UNRELEASED)
+- Added accessors to various product measurements. Height, weight, etc.
+- Reduced time for an ONIX::Reader class to initialise
+
+v0.4.0 (28th October 2008)
+- Major rework: now based on ROXML instead of xml-mapping
+  - Mostly API Compatible
+  - StreamReader and StreamWriter renamed to Reader and Writer
+  - ROXML is based on libxml, so things should be significantly faster
+
+v0.2.7 (Unreleased)
+- Add line breaks after each product
+
+v0.2.5 (Unreleased)
+- Make PublishingStatus a two_digit_node
+
+v0.2.4 (Unreleased)
+- Initialise the media files array of a new product correctly
+
+v0.2.3 (Unreleased)
+- Switch a few more fields over to TwoDigitNodes
+- Make the product availability field accessible from APAProduct
+
+v0.2.2 (Unreleased)
+- Add a new nodetype (DateNode) for YYYYMMDD fields
+
+v0.2.1 (Unreleased)
+- Add a new nodetype (TwoDigitNode) for two digit codes
+
+v0.2.0 (16th July 2008)
+- Add support for reading and storing subject codes (BIC, BISAC, etc)
+
+v0.1.0 (12th June 2008)
+- Initial Release

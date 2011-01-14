@@ -1,0 +1,14 @@
+- finish adding support for all tags in a Product record
+  - contributor still needs some obscure tags added
+- add a new node type for dates that should be in the form YYYYMMDD
+- allow symbols to be used instead of numeric codes
+  - contribution type, id type, etc
+- validations
+  - hard stuff from the spec
+    - 2 digit numbers, 8 digit dates, char limits on text fields
+  - code lists
+    - only values in code lists allowed in relevant fields
+  - regional requirements
+    - titlepage minimum set of tags
+    - APA (if different to titlepage)
+- documentation
